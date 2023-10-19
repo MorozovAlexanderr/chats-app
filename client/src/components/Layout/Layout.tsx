@@ -3,9 +3,9 @@ import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
   return (
-    <div>
+    <div className="w-full">
       <Header />
-      <main>
+      <main className="mx-auto max-w-7xl md:px-8">
         <Outlet />
       </main>
     </div>
