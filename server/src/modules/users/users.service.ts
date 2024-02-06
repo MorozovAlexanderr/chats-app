@@ -11,10 +11,10 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: RegisterUserDto): Promise<UserDocument> {
-    return await this.userModel.create(createUserDto);
+    return this.userModel.create(createUserDto);
   }
 
   async getUser(query: FilterQuery<User>): Promise<UserDocument | null> {
-    return await this.userModel.findOne(query).select('+password').exec();
+    return this.userModel.findOne(query).exec();
   }
 }
