@@ -8,12 +8,26 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'import'],
   rules: {
     'no-restricted-imports': [
       'error',
       {
         patterns: ['@/features/*/*'],
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+        ],
       },
     ],
     'react-refresh/only-export-components': [

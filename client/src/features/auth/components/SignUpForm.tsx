@@ -1,10 +1,12 @@
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { getErrorMessage } from '@/utils/errors';
 import { Form, InputField } from '@/components/Form';
 import Button from '@/components/Elements/Button';
+import { useSignUp } from '@/features/auth/';
 
-type RegisterValues = {
+type SignUpValues = {
   name: string;
   email: string;
   password: string;
@@ -17,12 +19,14 @@ const validationSchema = yup.object({
 });
 
 const SignUpForm = () => {
-  const handleSubmit = (values: unknown) => {
-    console.log('submited', values);
+  const { mutate: signUpMutation, isPending, error } = useSignUp();
+
+  const handleSubmit = (values: SignUpValues) => {
+    signUpMutation(values);
   };
 
   return (
-    <Form<RegisterValues>
+    <Form<SignUpValues>
       onSubmit={handleSubmit}
       options={{ resolver: yupResolver(validationSchema) }}
     >
@@ -44,13 +48,14 @@ const SignUpForm = () => {
             error={formState.errors.password}
             registration={register('password')}
           />
+          {error && <p className="text-red-500">{getErrorMessage(error)}</p>}
           <p className="text-sm">
             Already have an account?{' '}
             <Link to="/login" className="text-secondary hover:text-primary">
               Sign In
             </Link>
           </p>
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" isLoading={isPending}>
             Sign Up
           </Button>
         </>

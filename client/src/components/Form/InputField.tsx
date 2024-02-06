@@ -16,7 +16,6 @@ const InputField = ({
   error,
   registration,
 }: InputFieldProps) => {
-  console.log(error?.message);
   return (
     <div>
       <label>

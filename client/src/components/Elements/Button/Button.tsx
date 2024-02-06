@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import Spinner from '@/components/Elements/Spinner';
 
 const variants = {
   primary: 'bg-accent text-white',
@@ -22,6 +23,7 @@ const Button = ({
   className = '',
   variant = 'primary',
   size = 'md',
+  isLoading = false,
   ...props
 }: ButtonProps) => {
   return (
@@ -35,6 +37,7 @@ const Button = ({
       )}
       {...props}
     >
+      {isLoading && <Spinner size="sm" className="text-current" />}
       <span className="mx-2">{props.children}</span>
     </button>
   );
