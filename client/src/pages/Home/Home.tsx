@@ -1,5 +1,19 @@
+import { useLogout } from '@/features/auth';
+import Button from '@/components/Elements/Button';
+
 const Home = () => {
-  return <div>home page</div>;
+  const logoutMutation = useLogout();
+
+  const handleLogout = () => {
+    logoutMutation();
+  };
+
+  return (
+    <div>
+      home page
+      <Button onClick={handleLogout}>Logout</Button>
+    </div>
+  );
 };
 
 export default Home;
