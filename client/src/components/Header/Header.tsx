@@ -18,17 +18,17 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header className="sticky top-0 z-50 bg-white">
       <div className="mx-auto flex max-w-7xl justify-between py-10 md:px-8">
         <h1 className="text-2xl font-semibold text-primary">ChatsApp</h1>
         {user && (
           <div className="flex items-center">
-            <p className="text-secondary">{user?.name}</p>
+            <p className="text-gray-900">{user?.name}</p>
             <Menu as="div" className="relative ml-3">
               {({ open }) => (
                 <>
                   <Menu.Button className="flex h-10 w-10 cursor-pointer items-center text-neutral">
-                    <UserCircleIcon className="" />
+                    <UserCircleIcon />
                   </Menu.Button>
                   <Transition
                     show={open}

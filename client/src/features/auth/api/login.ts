@@ -21,7 +21,7 @@ export const useSignIn = () => {
     onSuccess: ({ data }) => {
       storage.setToken(data.token);
       queryClient.setQueryData(['user'], data.user);
-      navigate('/home');
+      navigate('/rooms');
     },
     onError: (error) => {
       console.error(error);
