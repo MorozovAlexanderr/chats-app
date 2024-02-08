@@ -23,6 +23,8 @@ const SignInForm = () => {
     signInMutation(values);
   };
 
+  console.log(isPending);
+
   return (
     <Form<SignInValues>
       onSubmit={handleSubmit}
@@ -42,7 +44,7 @@ const SignInForm = () => {
             registration={register('password')}
           />
           {error && <p className="text-red-500">{getErrorMessage(error)}</p>}
-          <p className="text-sm">
+          <p className="text-center text-sm">
             Don't have an account?{' '}
             <Link to="/register" className="text-secondary hover:text-primary">
               Sign Up

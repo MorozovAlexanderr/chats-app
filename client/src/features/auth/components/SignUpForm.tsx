@@ -49,7 +49,7 @@ const SignUpForm = () => {
             registration={register('password')}
           />
           {error && <p className="text-red-500">{getErrorMessage(error)}</p>}
-          <p className="text-sm">
+          <p className="text-center text-sm">
             Already have an account?{' '}
             <Link to="/login" className="text-secondary hover:text-primary">
               Sign In
