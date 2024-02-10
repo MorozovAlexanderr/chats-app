@@ -17,23 +17,23 @@ import MongooseClassSerializerInterceptor from 'interceptors/mongooseClassSerial
 @Controller('auth')
 @UseInterceptors(MongooseClassSerializerInterceptor(User))
 export class AuthController {
-  constructor(private readonly _authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('register')
   async register(@Body() registerUserDto: RegisterUserDto) {
-    const user = await this._authService.register(registerUserDto);
-    return this._authService.login(user);
+    const user = await this.authService.register(registerUserDto);
+    return this.authService.login(user);
   }
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
   @HttpCode(200)
   login(@Request() req) {
-    return this._authService.login(req.user);
+    return this.authService.login(req.user);
   }
 
   @UseGuards(AuthGuard('jwt'))
-  @Get('me')
+  @Get()
   getAuthUser(@Request() req) {
     return req.user;
   }

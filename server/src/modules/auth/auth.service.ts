@@ -10,13 +10,13 @@ import MongoError from 'constants/mongoErrors';
 @Injectable()
 export class AuthService {
   constructor(
-    private _usersService: UsersService,
+    private usersService: UsersService,
     private jwtService: JwtService,
   ) {}
 
   async register(registerData: RegisterUserDto) {
     try {
-      return await this._usersService.create(registerData);
+      return await this.usersService.create(registerData);
     } catch (error) {
       if (error?.code === MongoError.DuplicateKey) {
         throw new HttpException(
@@ -46,7 +46,7 @@ export class AuthService {
     email: string,
     password: string,
   ): Promise<UserDocument | null> {
-    const user = await this._usersService.getUser({ email });
+    const user = await this.usersService.getUser({ email });
 
     if (user && (await validateHash(password, user.password))) return user;
 
