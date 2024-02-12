@@ -15,7 +15,12 @@ export class RoomsService {
     return this.roomModel.create({ ...roomData, members: [user] });
   }
 
-  getAll() {
-    return this.roomModel.find().populate('members');
+  getAll(page, limit) {
+    return this.roomModel
+      .find()
+      .sort({ _id: 1 })
+      .limit(limit)
+      .skip(limit * (page - 1))
+      .populate('members');
   }
 }

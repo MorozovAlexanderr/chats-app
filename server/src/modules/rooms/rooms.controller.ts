@@ -3,15 +3,18 @@ import {
   Controller,
   Get,
   Post,
+  Query,
   Request,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Room } from '@rooms/schemas/room.schema';
+import { PaginationRequestDto } from 'dto/pagination-request.dto';
 import MongooseClassSerializerInterceptor from 'interceptors/mongooseClassSerializer.interceptor';
-import { CreateRoomDto } from 'modules/rooms/dto/create-room.dto';
-import { RoomsService } from 'modules/rooms/rooms.service';
+import { CreateRoomDto } from '@rooms/dto/create-room.dto';
+import { RoomsService } from '@rooms/rooms.service';
+import { PaginationTransformPipe } from 'pipes/pagination-transform.pipes';
 
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(MongooseClassSerializerInterceptor(Room))
@@ -25,7 +28,10 @@ export class RoomsController {
   }
 
   @Get()
-  getRooms() {
-    return this.roomsService.getAll();
+  getRooms(
+    @Query(new PaginationTransformPipe())
+    { page = 1, limit = 3 }: PaginationRequestDto,
+  ) {
+    return this.roomsService.getAll(page, limit);
   }
 }
