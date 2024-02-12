@@ -20,6 +20,7 @@
     "paths": {
       "@users/*": ["modules/users/*"],
       "@auth/*": ["modules/auth/*"],
+      "@rooms/*": ["modules/rooms/*"],
       "@utils/*": ["utils/*"]
     }
   }
