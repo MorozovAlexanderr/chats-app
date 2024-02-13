@@ -23,8 +23,6 @@ const SignInForm = () => {
     signInMutation(values);
   };
 
-  console.log(isPending);
-
   return (
     <Form<SignInValues>
       onSubmit={handleSubmit}
