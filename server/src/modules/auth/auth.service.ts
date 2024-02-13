@@ -3,7 +3,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User, UserDocument } from '@users/schemas/user.schema';
 import { UsersService } from '@users/users.service';
-import { validateHash } from '@utils/hashing';
+import { validateHash } from 'utils/hashing';
 import { plainToClass } from 'class-transformer';
 import MongoError from 'constants/mongoErrors';
 

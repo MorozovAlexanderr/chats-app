@@ -1,7 +1,8 @@
+import * as mongoosePaginate from 'mongoose-paginate-v2';
+import mongoose, { HydratedDocument } from 'mongoose';
+import { Transform, Type } from 'class-transformer';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { User } from '@users/schemas/user.schema';
-import { Transform, Type } from 'class-transformer';
-import mongoose, { HydratedDocument } from 'mongoose';
 
 export type RoomDocument = HydratedDocument<Room>;
 
@@ -18,4 +19,5 @@ export class Room {
   members: User[];
 }
 
-export const RoomSchema = SchemaFactory.createForClass(Room);
+export const RoomSchema =
+  SchemaFactory.createForClass(Room).plugin(mongoosePaginate);
