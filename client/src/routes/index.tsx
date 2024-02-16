@@ -5,9 +5,11 @@ import SignUp from '@/pages/SignUp';
 import { useAuth } from '@/hooks/useAuth';
 import Spinner from '@/components/Elements/Spinner';
 import RoomsList from '@/pages/RoomsList';
+import ChatRoom from '@/pages/ChatRoom';
 
 const privateRoutes = [
   { path: '/rooms', element: <RoomsList /> },
+  { path: '/rooms/:roomId', element: <ChatRoom /> },
   { path: '*', element: <Navigate to="/rooms" /> },
 ];
 

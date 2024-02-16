@@ -9,6 +9,7 @@ import {
 type FormProps<TFormValues extends FieldValues> = {
   options?: UseFormProps<TFormValues>;
   onSubmit: SubmitHandler<TFormValues>;
+  className?: string;
   children: (methods: UseFormReturn<TFormValues>) => React.ReactNode;
 };
 
@@ -16,10 +17,11 @@ const Form = <TFormValues extends Record<string, unknown>>({
   options,
   onSubmit,
   children,
+  ...props
 }: FormProps<TFormValues>) => {
   const methods = useForm(options);
   return (
-    <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={methods.handleSubmit(onSubmit)} {...props}>
       {children(methods)}
     </form>
   );

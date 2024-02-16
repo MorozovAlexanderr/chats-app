@@ -3,9 +3,9 @@ import Header from '@/components/Header';
 
 const Layout = () => {
   return (
-    <div className="w-full">
+    <div className="flex w-full flex-col overflow-hidden">
       <Header />
-      <main className="relative mx-auto flex max-w-7xl flex-col md:px-8">
+      <main className="no-scrollbar relative mx-auto flex w-full max-w-7xl flex-1 flex-col overflow-y-auto md:px-8">
         <Outlet />
       </main>
     </div>

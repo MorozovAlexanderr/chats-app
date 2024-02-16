@@ -29,6 +29,7 @@ const SignUpForm = () => {
     <Form<SignUpValues>
       onSubmit={handleSubmit}
       options={{ resolver: yupResolver(validationSchema) }}
+      className="space-y-4"
     >
       {({ register, formState }) => (
         <>

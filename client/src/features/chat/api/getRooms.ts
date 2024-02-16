@@ -3,7 +3,7 @@ import { Room } from '../types';
 import { axios } from '@/lib/axios';
 import { Pagination } from '@/types/pagination';
 
-export const getRooms = async ({
+const getRooms = async ({
   pageParam,
 }: {
   pageParam: number;

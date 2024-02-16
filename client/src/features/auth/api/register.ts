@@ -10,7 +10,7 @@ export type RegisterCredentialsDTO = {
   name: string;
 };
 
-export const register = (
+const register = (
   credentials: RegisterCredentialsDTO
 ): Promise<UserResponse> => axios.post('/auth/register', credentials);
 

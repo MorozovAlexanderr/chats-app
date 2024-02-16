@@ -18,7 +18,7 @@ const RoomsList = () => {
         {data?.pages.map((group, idx) => (
           <React.Fragment key={idx}>
             {group.docs.map((room) => (
-              <RoomCard key={room._id} title={room.title} />
+              <RoomCard key={room._id} id={room._id} title={room.title} />
             ))}
           </React.Fragment>
         ))}
