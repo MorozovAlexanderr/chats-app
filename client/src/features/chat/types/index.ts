@@ -1,11 +1,15 @@
+import { User } from '@/features/auth';
+
 export type Room = {
   _id: string;
   title: string;
-  members: RoomMember[];
+  members: User[];
 };
 
-export type RoomMember = {
-  id: string;
-  name: string;
-  email: string;
+export type Message = {
+  _id: string;
+  content: string;
+  roomId: string;
+  creator: User;
+  createdAt: string;
 };

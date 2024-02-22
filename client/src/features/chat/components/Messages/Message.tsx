@@ -1,23 +1,30 @@
 import classNames from 'classnames';
+import { Message as Msg } from '../../types';
+import { useAuth } from '@/hooks/useAuth';
 
 type MessageProps = {
-  text: string;
-  me?: boolean;
+  message: Msg;
 };
 
-const Message = ({ text, me }: MessageProps) => {
+const Message = ({ message }: MessageProps) => {
+  const { user } = useAuth();
+  const isSentByAuthUser = user?._id === message.creator._id;
+
   return (
     <div
       className={classNames(
         'w-fit max-w-[450px] rounded-r-xl rounded-t-xl border-t bg-accent p-3',
-        { 'self-end rounded-l-xl rounded-br-none bg-secondary': me }
+        {
+          'self-end rounded-l-xl rounded-br-none bg-secondary':
+            isSentByAuthUser,
+        }
       )}
     >
       <div className="flex justify-between gap-4">
-        <p className="text-xs text-neutral">AUTHOR</p>
-        <p className="text-xs text-white">12:00</p>
+        <p className="text-xs text-neutral">{message.creator.name}</p>
+        <p className="text-xs text-white">{message.createdAt}</p>
       </div>
-      <p className="text-sm font-light text-white">{text}</p>
+      <p className="text-sm font-light text-white">{message.content}</p>
     </div>
   );
 };

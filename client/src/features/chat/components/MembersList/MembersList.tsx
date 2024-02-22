@@ -1,6 +1,6 @@
-import Loader from '@/components/Loader';
 import { RoomMember } from '../../types';
 import Member from './Member';
+import Loader from '@/components/Loader';
 
 type MembersListProps = {
   loading: boolean;

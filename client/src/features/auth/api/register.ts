@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { UserResponse } from '@/features/auth';
+import { UserAuthResponse } from '@/features/auth';
 import { axios } from '@/lib/axios';
 import storage from '@/utils/storage';
 
@@ -12,13 +12,13 @@ export type RegisterCredentialsDTO = {
 
 const register = (
   credentials: RegisterCredentialsDTO
-): Promise<UserResponse> => axios.post('/auth/register', credentials);
+): Promise<UserAuthResponse> => axios.post('/auth/register', credentials);
 
 export function useSignUp() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<UserResponse, unknown, RegisterCredentialsDTO, unknown>({
+  return useMutation<UserAuthResponse, unknown, RegisterCredentialsDTO, unknown>({
     mutationFn: ({ email, password, name }) =>
       register({ email, password, name }),
     onSuccess: ({ data }) => {

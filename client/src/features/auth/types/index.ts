@@ -1,12 +1,12 @@
-export type AuthUser = {
+export type User = {
   _id: string;
   email: string;
   name: string;
 };
 
-export type UserResponse = {
+export type UserAuthResponse = {
   data: {
-    user: AuthUser;
+    user: User;
     token: string;
   };
 };
