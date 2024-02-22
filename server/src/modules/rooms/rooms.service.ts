@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '@users/schemas/user.schema';
 import { plainToClass } from 'class-transformer';
@@ -13,18 +13,27 @@ export class RoomsService {
   ) {}
 
   createRoom(roomData: CreateRoomDto, user: User) {
-    return this.roomModel.create({ ...roomData, members: [user] });
+    const room = new this.roomModel({ ...roomData, members: [user] });
+    return room.save();
   }
 
   async getAll(page, limit) {
     const roomsData = await this.roomModel.paginate(
       {},
-      { page, limit, sort: { _id: 1 }, populate: 'members' },
+      { page, limit, populate: 'members' },
     );
 
     return {
       ...roomsData,
       docs: roomsData.docs.map((room) => plainToClass(Room, room.toJSON())),
     };
+  }
+
+  async getRoom(id: string) {
+    const room = await this.roomModel.findById(id).populate('members');
+    if (!room) {
+      throw new NotFoundException();
+    }
+    return room;
   }
 }

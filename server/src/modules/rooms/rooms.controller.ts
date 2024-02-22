@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Query,
   Request,
@@ -30,8 +31,13 @@ export class RoomsController {
   @Get()
   getRooms(
     @Query(new PaginationTransformPipe())
-    { page = 1, limit = 3 }: PaginationRequestDto,
+    { page = 1, limit = 10 }: PaginationRequestDto,
   ) {
     return this.roomsService.getAll(page, limit);
+  }
+
+  @Get(':id')
+  getRoom(@Param('id') id: string) {
+    return this.roomsService.getRoom(id);
   }
 }
