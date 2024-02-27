@@ -5,3 +5,5 @@ export { default as Messages } from './components/Messages';
 export { default as ChatHeader } from './components/ChatHeader';
 export * from './api/getRooms';
 export * from './api/getRoom';
+export * from './types';
+export * from './hooks/useChatSocket';

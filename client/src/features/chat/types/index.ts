@@ -13,3 +13,8 @@ export type Message = {
   creator: User;
   createdAt: string;
 };
+
+export type CreateMessageDto = {
+  content: string;
+  roomId: string;
+};

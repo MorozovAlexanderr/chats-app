@@ -3,8 +3,8 @@ import { useMessages } from '../../api/getMessages';
 import Message from './Message';
 
 const Messages = () => {
-  const { roomId } = useParams();
-  const { data } = useMessages(roomId || '');
+  const { roomId = '' } = useParams();
+  const { data } = useMessages(roomId);
 
   return (
     <div className="no-scrollbar flex flex-1 flex-col gap-1 overflow-y-auto py-2">
