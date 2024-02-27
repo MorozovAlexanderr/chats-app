@@ -1,12 +1,11 @@
 import { CreateMessageDto } from '@messages/dto/create-message.dto';
 import { MessagesService } from '@messages/messages.service';
-import { UseGuards, UseInterceptors } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
 import { SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
-import MongooseClassSerializerInterceptor from 'interceptors/mongooseClassSerializer.interceptor';
 import { WsJwtGuard } from 'modules/chat/guards/ws.guard';
 import { AuthSocketClient } from 'modules/chat/interfaces/auth-socket-client.interface';
 
-@WebSocketGateway()
+@WebSocketGateway({ cors: { origin: '*' } })
 @UseGuards(WsJwtGuard)
 export class ChatGateway {
   constructor(private readonly messagesService: MessagesService) {}
@@ -14,7 +13,11 @@ export class ChatGateway {
   @SubscribeMessage('join')
   handleJoin(client: AuthSocketClient, roomId: number) {
     client.join(roomId.toString());
-    return roomId;
+  }
+
+  @SubscribeMessage('leave')
+  handleLeave(client: AuthSocketClient, roomId: string) {
+    client.leave(roomId);
   }
 
   @SubscribeMessage('message')
