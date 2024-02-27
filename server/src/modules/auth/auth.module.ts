@@ -7,7 +7,18 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from '@auth/strategies/jwt.strategy';
 
 @Module({
-  imports: [UsersModule, JwtModule.register({})],
+  imports: [
+    UsersModule,
+    JwtModule.registerAsync({
+      useFactory: () => ({
+        secret: process.env.JWT_ACCESS_TOKEN_SECRET,
+        signOptions: {
+          expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME,
+        },
+      }),
+    }),
+  ],
+  exports: [AuthService],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
 })

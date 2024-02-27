@@ -52,4 +52,9 @@ export class AuthService {
 
     return null;
   }
+
+  verifyUser(token: string) {
+    const payload = this.jwtService.verify<{ id: string }>(token);
+    return this.usersService.getUser({ _id: payload.id });
+  }
 }
