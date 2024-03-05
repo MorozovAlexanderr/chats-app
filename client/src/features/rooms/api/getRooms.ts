@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Room } from '../types';
+import { Room } from '../../chat/types';
 import { axios } from '@/lib/axios';
 import { Pagination } from '@/types/pagination';
 

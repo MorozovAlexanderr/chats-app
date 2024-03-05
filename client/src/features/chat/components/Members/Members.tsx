@@ -1,10 +1,10 @@
-import { RoomMember } from '../../types';
 import Member from './Member';
+import { User } from '@/features/auth';
 import Loader from '@/components/Loader';
 
 type MembersListProps = {
   loading: boolean;
-  members: RoomMember[] | undefined;
+  members: User[] | undefined;
 };
 
 const MembersList = ({ loading, members }: MembersListProps) => {
@@ -25,7 +25,7 @@ const MembersList = ({ loading, members }: MembersListProps) => {
             <Loader key={idx} className="h-10 rounded-xl" />
           ))}
         {members?.map((member) => (
-          <Member key={member.id} name={member.name} />
+          <Member key={member._id} name={member.name} />
         ))}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { RoomCard, useRooms } from '@/features/chat';
+import { useRooms } from '../api/getRooms';
+import RoomCard from './RoomCard';
 import { useDetectScrollEnd } from '@/hooks/useDetectScrollEnd';
 import Spinner from '@/components/Elements/Spinner';
 import Loader from '@/components/Loader';
