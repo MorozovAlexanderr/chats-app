@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Room } from '../../chat/types';
 import { axios } from '@/lib/axios';
 import { Pagination } from '@/types/pagination';
+import { Room } from '@/features/rooms';
 
 const getRooms = async ({
   pageParam,

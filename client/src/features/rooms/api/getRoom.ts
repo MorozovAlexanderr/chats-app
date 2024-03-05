@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Room } from '../../chat/types';
+import { Room } from '../types';
 import { axios } from '@/lib/axios';
 
 const getRoom = async (roomId: string): Promise<Room> => {

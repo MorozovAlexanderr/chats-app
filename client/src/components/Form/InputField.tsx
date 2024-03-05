@@ -1,7 +1,8 @@
 import classNames from 'classnames';
+import { ComponentProps } from 'react';
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
-type InputFieldProps = {
+type InputFieldProps = ComponentProps<'input'> & {
   type?: 'text' | 'email' | 'password';
   label: string;
   className?: string;
